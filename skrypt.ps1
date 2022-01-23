@@ -1,43 +1,43 @@
 # AZ1_Projekt
 
-$csv = "c:\xd\u¿ytkownicy.csv"
+$csv = "c:\...\uzytkownicy.csv"
 $domain = Get-ADDomain
-$folder = "c:\xd\"
+$folder = "c:\...\"
 $count = 0
 
-# Generator hase³
+# Generator hasel
 $newPass = ''
 1..12 | ForEach-Object {$newPass += [char](Get-Random -Minimum 48 -Maximum 122)}
 
-# Funkcja tworz¹ca lokalizacje, wktórej bed¹ znajdowaæ siê wszystkie pliki wynikowe
+# Funkcja tworzaca lokalizacje, w ktorej beda znajdowac sie wszystkie pliki wynikowe
 function folder
 {
     if(Test-Path $folder){}
     else{New-Item -Path $folder -ItemType Directory -Force}
 }
 
-# Funkcja menu g³ównego, s³u¿y do wybrania po¿¹danego dzia³ania
+# Funkcja menu glownego, sluzy do wybrania pozadanego dzialania
 function menu
 {
  cls
- $opcja = Read-Host "Proszê wybraæ opcje:`n 1 – Obs³uga kont u¿ytkowników`n 2 - Obs³uga kont grup`n 3 - Raporty`n q - WyjdŸ"`n
+ $opcja = Read-Host "Prosze wybrac opcje:`n 1 â€“ Obsluga kont uzytkownikow`n 2 - Obsluga kont grup`n 3 - Raporty`n q - Wyjdz"`n
  if($opcja -eq 1){a}
  elseif($opcja -eq 2){b}
  elseif($opcja -eq 3){c}
  elseif($opcja -eq 'q'){break}
   else
     {
-     Write-Host "B³¹d - Wybierz poprawn¹ opcjê" -ForegroundColor Red
+     Write-Host "Blad - Wybierz poprawna opcje" -ForegroundColor Red
      Sleep 2
      menu
     }
 }
 
-# Podmenu do obs³ugi kont u¿ytkowników
+# Podmenu do obslugi kont uzytkownikow
 function a
 {
  cls
- $opcja = Read-Host "Proszê wybraæ opcje:`n 1 – Tworzenie konta u¿ytkownika`n 2 - Tworzenie wielu kont na podstawie pliku csv`n 3 - Blokowanie konta u¿ytkownika`n 4 - Zmiana has³a konta u¿ytkownika`n q - Wróæ"`n
+ $opcja = Read-Host "Prosze wybrac opcje:`n 1 â€“ Tworzenie konta uzytkownika`n 2 - Tworzenie wielu kont na podstawie pliku csv`n 3 - Blokowanie konta uzytkownika`n 4 - Zmiana hasla konta uzytkownika`n q - Wroc"`n
  if($opcja -eq 1){tworzenie_konta}
  elseif($opcja -eq 2){csv}
  elseif($opcja -eq 3){blokada_konta}
@@ -45,33 +45,33 @@ function a
   elseif($opcja -eq 'q'){menu}
  else
     {
-     Write-Host "B³¹d - Wybierz poprawn¹ opcjê" -ForegroundColor Red
+     Write-Host "Blad - Wybierz poprawna opcje" -ForegroundColor Red
      Sleep 2
      a
     }
 }
 
-# Podmenu do obs³ugi kont grup
+# Podmenu do obslugi kont grup
 function b
 {
  cls
- $opcja = Read-Host "Proszê wybraæ opcje:`n 1 – Tworzenie nowych grup`n 2 - Dodawanie u¿ytkowników do grup`n q - Wróæ"`n
+ $opcja = Read-Host "Prosze wybrac opcje:`n 1 â€“ Tworzenie nowych grup`n 2 - Dodawanie uzytkownikow do grup`n q - Wroc"`n
  if($opcja -eq 1){tworzenie_grupy}
  elseif($opcja -eq 2){dodanie_do_grupy}
   elseif($opcja -eq 'q'){menu}
  else
     {
-     Write-Host "B³¹d - Wybierz poprawn¹ opcjê" -ForegroundColor Red
+     Write-Host "Blad - Wybierz poprawna opcje" -ForegroundColor Red
      Sleep 2
      b
     }
 }
 
-# Podmenu do raportów
+# Podmenu do raportow
 function c
 {
  cls
- $opcja = Read-Host "Proszê wybraæ opcje:`n 1 – Lista grup z cz³onkami`n 2 - Lista zablokowanych kont w domenie`n 3 - Lista szczegó³owych informacji o kontach u¿ytkowników`n 4 - Lista szczegó³owych informacji o kontach komputerów w domenie`n 5 - Lista jednostek organizacyjnych w domenie`n q - Wróæ"`n
+ $opcja = Read-Host "Prosze wybrac opcje:`n 1 â€“ Lista grup z czlonkami`n 2 - Lista zablokowanych kont w domenie`n 3 - Lista szczegolowych informacji o kontach uzytkownikow`n 4 - Lista szczegolowych informacji o kontach komputerow w domenie`n 5 - Lista jednostek organizacyjnych w domenie`n q - WrocÃ¦"`n
  if($opcja -eq 1){lista_grup}
  elseif($opcja -eq 2){lista_kont_blok}
  elseif($opcja -eq 3){lista_konta}
@@ -80,13 +80,13 @@ function c
  elseif($opcja -eq 'q'){menu}
  else
     {
-     Write-Host "B³¹d - Wybierz poprawn¹ opcjê" -ForegroundColor Red
+     Write-Host "Blad - Wybierz poprawna opcje" -ForegroundColor Red
      Sleep 2
      c
     }
 }
 
-# Funkcja tworz¹ca konto u¿ytkownika
+# Funkcja tworzaca konto uzytkownika
 function tworzenie_konta
 {
     [CmdletBinding()]
@@ -121,7 +121,7 @@ function tworzenie_konta
     a
 }
 
-# Funkcja tworz¹ca wiele kont na podstawie pliku csv
+# Funkcja tworzaca wiele kont na podstawie pliku csv
 function tworzenie_konta_csv
 {
     $users = Import-Csv $csv
@@ -159,11 +159,11 @@ function tworzenie_konta_csv
     a
 }
 
-# Funkcja generuj¹ca pusty plik csv
+# Funkcja generujaca pusty plik csv
 function csv
 {
     cls
-    $opcja = Read-Host "Proszê wybraæ opcje:`n 1 - Tworzenie wielu kont na podstawie pliku csv`n 2 - Generuj pusty csv`n q - Wróæ"`n
+    $opcja = Read-Host "ProszÃª wybraÃ¦ opcje:`n 1 - Tworzenie wielu kont na podstawie pliku csv`n 2 - Generuj pusty csv`n q - WrÃ³Ã¦"`n
     if($opcja -eq 1){tworzenie_konta_csv}
     elseif($opcja -eq 2){
                             $header = "imie","nazwisko","dzial" | Select-Object imie,nazwisko,dzial | Export-Csv -Path $csv -NoClobber -NoTypeInformation
@@ -172,17 +172,17 @@ function csv
     elseif($opcja -eq 'q'){a}
     else
     {
-        Write-Host "B³¹d - Wybierz poprawn¹ opcjê" -ForegroundColor Red
+        Write-Host "BÂ³Â¹d - Wybierz poprawnÂ¹ opcjÃª" -ForegroundColor Red
         Sleep 2
         a
     }
 }
 
-# Funkcja blokuj¹ca konto u¿ytkownika
+# Funkcja blokujaca konto uzytkownika
 function blokada_konta
 {
     cls
-    $block = Read-Host "Proszê wpisaæ login do zablokowania: "`n
+    $block = Read-Host "ProszÃª wpisaÃ¦ login do zablokowania: "`n
     Get-ADUser -Filter 'SamAccountName -like $block' | Disable-ADAccount
     $nazwa = Get-ADUser -Filter 'SamAccountName -like $block' | Select-Object Name
     $who = Get-ADUser $env:USERNAME
@@ -191,12 +191,12 @@ function blokada_konta
     a
 }
 
-# Funkcja zmieniaj¹ca has³o u¿ytkownika
+# Funkcja zmieniajaca haslo uzytkownika
 function zmiana_hasla
 {
     cls
-    $konto = Read-Host "Proszê wpisaæ login do zmiany has³a: "`n
-    $haslo = Read-Host "Prosze wpisaæ nowe has³o: "`n
+    $konto = Read-Host "ProszÃª wpisaÃ¦ login do zmiany hasÂ³a: "`n
+    $haslo = Read-Host "Prosze wpisaÃ¦ nowe hasÂ³o: "`n
     $konto1 = Get-ADUser -Filter 'SamAccountName -like $konto'
     Set-ADAccountPassword -Identity $konto1 -NewPassword (ConvertTo-SecureString -AsPlainText $haslo -Force)
     $nazwa = Get-ADUser -Filter 'SamAccountName -like $konto' | Select-Object Name
@@ -206,11 +206,11 @@ function zmiana_hasla
     a
 }
 
-# Funkcja tworz¹ca konto grupy
+# Funkcja tworzaca konto grupy
 function tworzenie_grupy
 {
     cls
-    $grupa = Read-Host "Proszê wpisaæ nazwê grupy: "`n
+    $grupa = Read-Host "ProszÃª wpisaÃ¦ nazwÃª grupy: "`n
     $check = Get-ADGroup $grupa
     if($check)
     {
@@ -229,11 +229,11 @@ function tworzenie_grupy
     b
 }
 
-# Funkcja dodaj¹ca konto u¿ytkownika do grupy
+# Funkcja dodajaca konto uzytkownika do grupy
 function dodanie_do_grupy
 {
     cls
-    $grupa = Read-Host "Proszê wpisaæ nazwê grupy: "`n
+    $grupa = Read-Host "ProszÃª wpisaÃ¦ nazwÃª grupy: "`n
     $check = Get-ADGroup $grupa
     if(!$check)
     {
@@ -243,11 +243,11 @@ function dodanie_do_grupy
     }
     else
     {
-        $user = Read-Host "Proszê wpisaæ login u¿ytkownika: "`n
+        $user = Read-Host "ProszÃª wpisaÃ¦ login uÂ¿ytkownika: "`n
         $checkuser = Get-ADUser -Filter 'SamAccountName -like $user'
         if(!$checkuser)
         {
-            Write-Host "ten u¿ytkownik nie istnieje" -ForegroundColor Red
+            Write-Host "ten uÂ¿ytkownik nie istnieje" -ForegroundColor Red
             Sleep 2
             b
         }
@@ -261,7 +261,7 @@ function dodanie_do_grupy
     b
 }
 
-# Funkcja generuj¹ca raport z list¹ grup z cz³onkami
+# Funkcja generujaca raport z lista grup z czlonkami
 function lista_grup
 {
     Get-ADGroup -Filter * | Select-Object Name | % {
@@ -272,21 +272,21 @@ function lista_grup
     c
 }
 
-# Funkcja generuj¹ca raport z list¹ zablokowanych kont
+# Funkcja generujaca raport z lista zablokowanych kont
 function lista_kont_blok
 {
     Get-ADUser -Filter {Enabled -eq $false} -properties WhenChanged | Select Name,DistinguishedName,SID,WhenChanged | Export-Csv -Path $folder"zablokowane_konta.csv" -NoClobber -NoTypeInformation
     c
 }
 
-# Funkcja generuj¹ca raport z list¹ u¿ytkowników
+# Funkcja generujaca raport z lista uzytkownikow
 function lista_konta
 {
-    Get-ADUser -Filter * -Properties whenCreated,whenChanged,LastLogonDate,PasswordLastSet | Select GivenName,Surname,UserPrincipalName,SamAccountName,DistinguishedName,whenCreated,whenChanged,LastLogonDate,PasswordLastSet | Export-Csv -Path $folder"u¿ytkownicy.csv" -NoClobber -NoTypeInformation
+    Get-ADUser -Filter * -Properties whenCreated,whenChanged,LastLogonDate,PasswordLastSet | Select GivenName,Surname,UserPrincipalName,SamAccountName,DistinguishedName,whenCreated,whenChanged,LastLogonDate,PasswordLastSet | Export-Csv -Path $folder"uÂ¿ytkownicy.csv" -NoClobber -NoTypeInformation
     c
 }
 
-# Funkcja generuj¹ca raport z list¹ komputerów
+# Funkcja generujaca raport z lista komputerow
 function lista_komp
 {
     Get-ADComputer -Filter * -Properties Enabled,PasswordLastSet,whenCreated,OperatingSystem | % {
@@ -296,7 +296,7 @@ function lista_komp
     c
 }
 
-# Funkcja generuj¹ca raport z list¹ jednostek organizacyjnych w domenie
+# Funkcja generujaca raport z lista jednostek organizacyjnych w domenie
 function lista_ou
 {
     Get-ADOrganizationalUnit -Filter * -Properties Name,DistinguishedName | Select Name,DistinguishedName | Export-Csv -Path $folder"OS.csv" -NoClobber -NoTypeInformation
@@ -305,4 +305,4 @@ function lista_ou
 
 cls # Wyczyszczenie konsoli
 folder # Utworzenie miejsca na wszystkie pliki i raporty
-menu # Wywo³anie g³ównej funkcji
+menu # Wywolanie glownej funkcji
