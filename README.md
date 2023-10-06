@@ -1,2 +1,2 @@
 # PSUtils
-powershell utilities for managing users and groups
+Powershell utilities for managing users and groups.
